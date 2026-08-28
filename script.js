@@ -89,7 +89,7 @@ loadOwnerMessage();
 // ===== TELEGRAM УВЕДОМЛЕНИЯ =====
 const TG_TOKEN = "8749136533:AAEtOd33O0cyZ8_buAf3z8g0f1gLKcKi1cY";
 const TG_CHAT_ID = "8492178931";
-
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnS3S-2Kf49-gjbs2N6k_4pSVp7F3dvAttm18x10FqZzUvzcGjL547DJ6SZWrslVqpmEZnd82mkY9dGZHQCmlrqyKzCDniHS44cmcuFUlgFK05WP8CZZN0ubINhjEn3GM6w9kVTWvZQMHkO_yDKe6ptkbxG9EHhGnnxrowtSg6xXE_JDHvtChpWThvD8Je8NzRFo7xxo49JKoH0sHDo9gVcqS8KN97J-onQ1nQoz9aezpO9CYelmWe_eo3pRJtAtemaUxnD6-PgSAb7TjEnwmi_F6YwEzg&lib=Mm3OTpzyTU2_eWLbCw63XuKh1QyXZrhzH";
 function notifyTelegram(text) {
   const url =
     `https://api.telegram.org/bot${TG_TOKEN}/sendMessage` +
