@@ -2,7 +2,47 @@
 
 const MESSAGES_API =
   "https://script.google.com/macros/s/AKfycbywKwhPyPYgrTuFY9bSi3Uhml_M8sLkeoFx3R0q0diI0RgIzzynlqTzYeaUZ5l5lLWjtQ/exec";
+function loadOwnerMessage() {
+  fetch(MESSAGES_API)
+    .then(response => response.json())
+    .then(data => {
+      console.log("Сообщение:", data);
 
+      if (!data.message) return;
+
+      showOwnerMessage(data.message, data.time);
+    })
+    .catch(error => {
+      console.log("Ошибка:", error);
+    });
+}
+
+function showOwnerMessage(message, time) {
+  let box = document.getElementById("owner-message");
+
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "owner-message";
+
+    box.innerHTML = `
+      <div class="owner-message-title">
+        📢 Сообщение от владельца
+      </div>
+
+      <div class="owner-message-text"></div>
+
+      <div class="owner-message-time"></div>
+    `;
+
+    document.body.prepend(box);
+  }
+
+  box.querySelector(".owner-message-text").textContent = message;
+  box.querySelector(".owner-message-time").textContent =
+    time ? `🕒 ${time}` : "";
+}
+
+loadOwnerMessage();
 function loadOwnerMessage() {
   fetch(MESSAGES_API)
     .then(response => response.json())
