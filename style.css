@@ -1140,3 +1140,60 @@ footer {
     font-size: 42px;
   }
 }
+/* ===== СООБЩЕНИЕ ОТ ВЛАДЕЛЬЦА ===== */
+
+#owner-message {
+  position: fixed;
+  top: 90px;
+  right: 25px;
+  width: min(380px, calc(100% - 40px));
+  padding: 18px 20px;
+  background: rgba(18, 22, 31, 0.95);
+  border: 1px solid rgba(124, 92, 255, 0.45);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 9998;
+  animation: ownerMessageIn 0.5s ease;
+}
+
+.owner-message-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #a89bff;
+  margin-bottom: 8px;
+}
+
+.owner-message-text {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.owner-message-time {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+@keyframes ownerMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 560px) {
+  #owner-message {
+    top: 82px;
+    right: 14px;
+    width: calc(100% - 28px);
+  }
+}
