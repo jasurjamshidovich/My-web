@@ -1,3 +1,51 @@
+// ===== СООБЩЕНИЕ ОТ ВЛАДЕЛЬЦА =====
+
+const MESSAGES_API =
+  "https://script.google.com/macros/s/AKfycbywKwhPyPYgrTuFY9bSi3Uhml_M8sLkeoFx3R0q0diI0RgIzzynlqTzYeaUZ5l5lLWjtQ/exec";
+
+function loadOwnerMessage() {
+  fetch(MESSAGES_API)
+    .then(response => response.json())
+    .then(data => {
+
+      if (!data.message) return;
+
+      showOwnerMessage(data.message, data.time);
+
+    })
+    .catch(error => {
+      console.log("Не удалось получить сообщение:", error);
+    });
+}
+
+function showOwnerMessage(message, time) {
+
+  let box = document.getElementById("owner-message");
+
+  if (!box) {
+    box = document.createElement("div");
+
+    box.id = "owner-message";
+
+    box.innerHTML = `
+      <div class="owner-message-title">
+        📢 Сообщение от владельца
+      </div>
+
+      <div class="owner-message-text"></div>
+
+      <div class="owner-message-time"></div>
+    `;
+
+    document.body.prepend(box);
+  }
+
+  box.querySelector(".owner-message-text").textContent = message;
+  box.querySelector(".owner-message-time").textContent =
+    time ? `🕒 ${time}` : "";
+}
+
+loadOwnerMessage();
 // ===== TELEGRAM УВЕДОМЛЕНИЯ =====
 const TG_TOKEN = "8749136533:AAEtOd33O0cyZ8_buAf3z8g0f1gLKcKi1cY";
 const TG_CHAT_ID = "8492178931";
@@ -909,4 +957,4 @@ if (musicAudio && musicPlay) {
       loadTrack(trackIndex, wasPlaying);
     }
   );
-}
+}
